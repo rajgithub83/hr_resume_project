@@ -106,20 +106,20 @@ ORDER BY count DESC;
 
 -- How has the employee count changed over time based on hire and term dates? (Think of retention rate each year)
 
-SELECT 
-	year, 
-    hires,
-    terminations,
-    hires - terminations AS net_change,
-    round( (hires - terminations)/hires * 100, 2 ) AS net_change_percent
-	FROM
-		(SELECT YEAR(hire_date) AS year,
-			count(*) AS hires,
-			SUM( CASE WHEN termdate <> '0000-00-00' AND termdate <= curdate() THEN 1 ELSE 0 END) AS terminations
-		FROM hr
-		WHERE age >= 18
-		GROUP BY year) AS subquery 
-ORDER BY year ASC;
+-- SELECT 
+-- 	year, 
+--     hires,
+--     terminations,
+--     hires - terminations AS net_change,
+--     round( (hires - terminations)/hires * 100, 2 ) AS net_change_percent
+-- 	FROM
+-- 		(SELECT YEAR(hire_date) AS year,
+-- 			count(*) AS hires,
+-- 			SUM( CASE WHEN termdate <> '0000-00-00' AND termdate <= curdate() THEN 1 ELSE 0 END) AS terminations
+-- 		FROM hr
+-- 		WHERE age >= 18
+-- 		GROUP BY year) AS subquery 
+-- ORDER BY year ASC;
 
 -- What is the tenure distribution for each department
 
